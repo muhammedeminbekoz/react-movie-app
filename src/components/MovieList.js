@@ -1,8 +1,10 @@
 import React from "react";
 
 const MovieList = (props) => {
-
-
+    /* 
+        function handleClick(e) {
+            console.log(e.pageY)
+        } */
 
     return (
         <div className="row">
@@ -14,7 +16,7 @@ const MovieList = (props) => {
                             <h5 className="card-title">{movie.name}</h5>
                             <p className="card-text">{movie.overview} </p>
                             <div className="d-flex justify-content-between align-item-center">
-                                <button type="button" className="btn btn-lg btn-outline-danger">Delete</button>
+                                <button type="button" onClick={(e) => props.deleteMovieProp(movie)} className="btn btn-lg btn-outline-danger">Delete</button>
                                 <h2><span className="badge text-bg-primary">{movie.rating} </span></h2>
                             </div>
                         </div>

@@ -1,10 +1,6 @@
 import React from "react";
 
 const MovieList = (props) => {
-    /* 
-        function handleClick(e) {
-            console.log(e.pageY)
-        } */
 
     return (
         <div className="row">

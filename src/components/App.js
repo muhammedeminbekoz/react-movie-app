@@ -21,7 +21,7 @@ class App extends React.Component {
             },
             {
                 "id": 3,
-                "name": "interstaller3",
+                "name": "Interstaller3",
                 "rating": "9.0",
                 "overview": "herkese salam",
                 "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
@@ -62,7 +62,8 @@ class App extends React.Component {
                 "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
             }
 
-        ]
+        ],
+        serachQuery: ""
     }
 
 
@@ -75,16 +76,30 @@ class App extends React.Component {
         }))
     }
 
+    searchMovie = (event) => {
+        this.setState({ serachQuery: event.target.value })
+    }
+
     render() {
+
+        let filteredMovies = this.state.movies.filter(
+            (movie) => {
+                return movie.name.toLocaleLowerCase().indexOf(this.state.serachQuery.toLowerCase()) !== -1
+            }
+        )
+
+
         return (
             <div className='container'>
                 <div className='row'>
                     <div className='col-lg-12'>
-                        <SearchBar />
+                        <SearchBar
+                            searchMovieProp={this.searchMovie}
+                        />
                     </div>
                 </div>
                 <MovieList
-                    movies={this.state.movies}
+                    movies={filteredMovies}
                     deleteMovieProp={this.deleteMovie}
                 />
             </div>

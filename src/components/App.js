@@ -1,73 +1,27 @@
 import React from 'react'
 import MovieList from "./MovieList"
 import SearchBar from './Searchbar'
+import axios from 'axios'
 
 class App extends React.Component {
     state = {
-        movies: [
-            {
-                "id": 1,
-                "name": "interstaller",
-                "rating": "9.0",
-                "overview": "herkese salam",
-                "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
-            },
-            {
-                "id": 2,
-                "name": "interstaller2",
-                "rating": "9.0",
-                "overview": "herkese salam",
-                "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
-            },
-            {
-                "id": 3,
-                "name": "Interstaller3",
-                "rating": "9.0",
-                "overview": "herkese salam",
-                "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
-            },
-            {
-                "id": 4,
-                "name": "interstaller4",
-                "rating": "9.0",
-                "overview": "herkese salam",
-                "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
-            },
-            {
-                "id": 5,
-                "name": "interstaller5",
-                "rating": "9.0",
-                "overview": "herkese salam",
-                "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
-            },
-            {
-                "id": 6,
-                "name": "interstaller6",
-                "rating": "9.0",
-                "overview": "herkese salam",
-                "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
-            },
-            {
-                "id": 7,
-                "name": "interstaller7",
-                "rating": "9.0",
-                "overview": "herkese salam",
-                "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
-            },
-            {
-                "id": 8,
-                "name": "interstaller8",
-                "rating": "9.0",
-                "overview": "herkese salam",
-                "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
-            }
-
-        ],
+        movies: [],
         serachQuery: ""
     }
 
 
-    deleteMovie = (movie) => {
+
+    async componentDidMount() {
+        const baseURL = "http://localhost:3001/movies"
+        const response = await axios.get(baseURL)
+        console.log(response)
+        this.setState({ movies: response.data })
+
+    }
+    //AXIOS
+    deleteMovie = async (movie) => {
+        const response = await axios.delete(`http://localhost:3001/movies/${movie.id}`)
+        console.log(response)
         const newMovieList = this.state.movies.filter(
             m => m.id !== movie.id
         )

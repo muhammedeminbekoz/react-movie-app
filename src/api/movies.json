@@ -1,0 +1,25 @@
+{
+  "movies": [
+    {
+      "id": "6",
+      "name": "interstaller6",
+      "rating": "9.0",
+      "overview": "herkese salam",
+      "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
+    },
+    {
+      "id": "7",
+      "name": "interstaller7",
+      "rating": "9.0",
+      "overview": "herkese salam",
+      "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
+    },
+    {
+      "id": "8",
+      "name": "interstaller8",
+      "rating": "9.0",
+      "overview": "herkese salam",
+      "imageURL": "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/xbiycuc84TrieEWwkkuH2hoEa9S.jpg"
+    }
+  ]
+}

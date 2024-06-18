@@ -2,7 +2,7 @@ import React from 'react'
 import MovieList from "./MovieList"
 import SearchBar from './Searchbar'
 import axios from 'axios'
-import AddMovie from './AddMovie'
+import AddMovie from "./AddMovie"
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
 
 class App extends React.Component {
@@ -14,14 +14,12 @@ class App extends React.Component {
     async componentDidMount() {
         const baseURL = "http://localhost:3001/movies"
         const response = await axios.get(baseURL)
-        console.log(response)
         this.setState({ movies: response.data })
 
     }
     //AXIOS
     deleteMovie = async (movie) => {
-        const response = await axios.delete(`http://localhost:3001/movies/${movie.id}`)
-        console.log(response)
+        await axios.delete(`http://localhost:3001/movies/${movie.id}`)
         const newMovieList = this.state.movies.filter(
             m => m.id !== movie.id
         )
@@ -32,6 +30,15 @@ class App extends React.Component {
 
     searchMovie = (event) => {
         this.setState({ serachQuery: event.target.value })
+    }
+
+
+    addMovie = async (movie) => {
+        const data = await axios.post('http://localhost:3001/movies', movie)
+        console.log(data);
+        this.setState(state => ({
+            movies: state.movies.concat([movie])
+        }))
     }
 
     render() {
@@ -60,7 +67,7 @@ class App extends React.Component {
                                 </React.Fragment>
                             }
                         />
-                        <Route path="/add" element={<AddMovie />} />
+                        <Route path="/add" element={<AddMovie onAddMovie={this.addMovie} />} />
                     </Routes>
                 </div>
             </Router>
